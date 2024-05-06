@@ -1,0 +1,68 @@
+REGRAS DE NEGOCIO
+
+  1 Entrada deve ser, no minimo, 20% do valor total;
+  2 Numero minimo de parcelas deve ser igual a 6;
+
+=> Com base nas regras de negocio, elenca-se os erros do programa e lança-se as exceções para cada um deles;
+
+Por exemplo: => se a regra de negocio 1 não for atendida, devo lançar uma exceção que avise o usuario sobre o erro de não atendê-la;
+
+OU
+
+se
+  regra 1 não for atendida
+    erro da regra 1
+senão
+  tudo OK
+
+===========================
+
+DESIGN DE LOGICA
+
+Não se pode deixar a lógica de negocio na classe principal;
+
+Deve ser colocada na classe de DOMINIO;
+
+  Então: => Regra de negocio de Financiamento deve estar na classe de DOMINIO de Financiamento;
+
+Não fica elegante ter uma função auxiliar para retornar uma String como mensagem de erro (no caso, a função de output System.out.println())
+
+Se não tiver erro, vai retornar nulo?
+
+Não são boas práticas adotar desses tipos de "Gambiarra" para tratar erros;
+
+Com isso, o melhor é tratar os erros com exceções;
+
+
+===========================
+
+OBJETIVO DO PROGRAMA
+
+Uma vez que o principal objetivo do programa é a instanciação do Financiamento e utilizar o metodo .prestacao() (definido na classe de DOMINIO),
+
+é boa prática definir as verificações de regras de negocio na propria instanciação, isto é, lá no metodo construtor, na classe de DOMINIO;
+
+OBS: => As classe de DOMINIO não pode ter interação com tela. Não pode ter .print(). Isso é responsabilidade da camada VIEW.
+
+===========================
+
+VERIFICAÇÃO PRONTA
+
+Já com a verificação de erros no metodo construtor da camada de DOMINIO, só então o objeto é instanciado.
+
+A instanciação estará num bloco de tentativa e erro, o chamado Try/Catch;
+
+Primeiro, o bloco de tentativa faz a instanciação.
+Try{
+  Se não der erro:
+    O programa é executado com sucesso e tudo certo
+}
+Catch{
+  Se der erro:
+    Ele captura a exceção lançada e apresenta o erro para o usuario;
+}
+
+===========================
+
+PROGRAMA PRINCIPAL
+
